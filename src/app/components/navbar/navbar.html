@@ -1,0 +1,61 @@
+<header class="header" [class.is-scrolled]="isScrolled()">
+  <div class="container header-container">
+    <a routerLink="/" class="brand-link" (click)="closeMobileMenu()">
+      <img src="images/logo-on-light.png" alt="Martand Legal Advisors" class="brand-logo" />
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a routerLink="/practice-areas" routerLinkActive="active" class="nav-link">Practice areas</a>
+      <a routerLink="/people" routerLinkActive="active" class="nav-link">People</a>
+      <a routerLink="/about" routerLinkActive="active" class="nav-link">About</a>
+      <a routerLink="/insights" routerLinkActive="active" class="nav-link">Insights</a>
+      <a routerLink="/careers" routerLinkActive="active" class="nav-link">Careers</a>
+      <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- Header Right Actions -->
+    <div class="header-actions">
+      <a href="tel:+914048592013" class="phone-link">
+        <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <span>+91 40 4859 2013</span>
+      </a>
+
+      <button (click)="onBookConsultation()" class="btn btn-primary btn-small header-btn">
+        Book a consultation
+      </button>
+
+      <!-- Hamburger toggle button -->
+      <button class="mobile-toggle" (click)="toggleMobileMenu()" aria-label="Toggle navigation">
+        <span class="hamburger-bar" [class.is-open]="isMobileMenuOpen()"></span>
+        <span class="hamburger-bar" [class.is-open]="isMobileMenuOpen()"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" [class.is-open]="isMobileMenuOpen()">
+    <nav class="mobile-nav">
+      <a routerLink="/" (click)="closeMobileMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="mobile-nav-link">Home</a>
+      <a routerLink="/practice-areas" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-nav-link">Practice areas</a>
+      <a routerLink="/people" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-nav-link">People</a>
+      <a routerLink="/about" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-nav-link">About</a>
+      <a routerLink="/insights" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-nav-link">Insights</a>
+      <a routerLink="/careers" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-nav-link">Careers</a>
+      <a routerLink="/contact" (click)="closeMobileMenu()" routerLinkActive="active" class="mobile-nav-link">Contact</a>
+      <div class="mobile-nav-footer">
+        <a href="tel:+914048592013" class="mobile-phone-link">
+          <svg class="phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>+91 40 4859 2013</span>
+        </a>
+        <button (click)="onBookConsultation()" class="btn btn-primary" style="width: 100%; margin-top: 12px;">
+          Book a consultation
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>

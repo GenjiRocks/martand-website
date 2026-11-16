@@ -1,0 +1,184 @@
+<!-- Insights Hero -->
+<section class="page-hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="breadcrumb">
+        <a routerLink="/" class="crumb-link">Home</a>
+        <span class="crumb-sep">/</span>
+        <span class="crumb-current">Insights</span>
+      </div>
+
+      <h1 class="page-title hero-title">Insights and recent work</h1>
+      <p class="hero-lead">
+        Short, practical notes on the rules that shape business in India, and a record of the matters we have been working on.
+      </p>
+    </div>
+
+    <div class="hero-arc-wrapper">
+      <svg viewBox="0 0 400 240" class="hero-arc" fill="none">
+        <ellipse cx="200" cy="240" rx="140" ry="140" stroke="#B8965E" stroke-width="1.5" opacity="0.6" stroke-dasharray="3 3" />
+        <ellipse cx="200" cy="240" rx="180" ry="180" stroke="#B8965E" stroke-width="2" opacity="0.4" />
+        <ellipse cx="200" cy="240" rx="220" ry="220" stroke="#25354C" stroke-width="2" opacity="0.8" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Main Insights Directory -->
+<section class="section">
+  <div class="container">
+    <!-- Toolbar -->
+    <div class="insights-toolbar">
+      <div class="category-tabs">
+        @for (cat of ['All', 'FEMA Notes', 'ESOP Desk', 'Company law', 'Recent work', 'Firm news']; track cat) {
+          <button 
+            type="button" 
+            class="filter-btn" 
+            [class.active]="selectedCategory() === cat"
+            (click)="setCategory(cat)"
+          >
+            {{ cat }}
+          </button>
+        }
+      </div>
+
+      <div class="search-box">
+        <input 
+          type="text" 
+          [ngModel]="searchQuery()" 
+          (ngModelChange)="searchQuery.set($event)"
+          placeholder="Search insights" 
+          class="search-input"
+        />
+      </div>
+    </div>
+
+    <!-- Featured Latest Note (Shown if on 'All' or 'FEMA Notes') -->
+    @if (selectedCategory() === 'All' || selectedCategory() === 'FEMA Notes') {
+      <div class="card featured-note-card">
+        <div class="tag-series">FEMA Notes · Latest</div>
+        <h2 class="featured-note-title" (click)="readArticle(insights[0])">
+          {{ insights[0].title }}
+        </h2>
+        <p class="body-text" style="font-size: 1.0625rem; margin-bottom: 24px; max-width: 800px;">
+          {{ insights[0].summary }}
+        </p>
+        <div class="featured-footer">
+          <div class="featured-meta">
+            <span>{{ insights[0].author }}</span>
+            <span class="meta-sep">·</span>
+            <span>{{ insights[0].date }}</span>
+          </div>
+          <button (click)="readArticle(insights[0])" class="text-link" style="background: none; border: none; cursor: pointer;">
+            Read the note →
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Articles Grid -->
+    @if (selectedCategory() !== 'Recent work') {
+      <div class="insights-grid-three">
+        @for (article of filteredArticles(); track article.id) {
+          @if (article.id !== insights[0].id || selectedCategory() !== 'All') {
+            <div class="card insight-item-card" (click)="readArticle(article)">
+              <span class="tag-series">{{ article.category }}</span>
+              <h3 class="card-title insight-item-title">{{ article.title }}</h3>
+              <p class="body-text insight-item-desc">{{ article.summary }}</p>
+              <div class="insight-meta">
+                <span>{{ article.author }}</span>
+                <span>{{ article.date }}</span>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    }
+
+    <!-- Recent Work Grid (Shown if 'All' or 'Recent work') -->
+    @if (selectedCategory() === 'All' || selectedCategory() === 'Recent work') {
+      <div style="margin-top: 64px;">
+        <div class="eyebrow" style="margin-bottom: 16px;">
+          <span class="sun-marker"></span>
+          <span>TRANSACTION MATTERS</span>
+        </div>
+        <h2 class="section-heading" style="margin-bottom: 32px;">Recent Work</h2>
+
+        <div class="insights-grid-three">
+          @for (work of recentWork; track work.description) {
+            <div class="card recent-item-card">
+              <span class="tag-neutral" style="margin-bottom: 12px; align-self: flex-start;">{{ work.practiceArea }}</span>
+              <p class="work-desc">{{ work.description }}</p>
+              <div class="insight-meta">
+                <span>{{ work.clientType }}</span>
+                <span>{{ work.monthYear }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Newsletter Banner on Navy -->
+<section class="insights-newsletter-section">
+  <div class="container newsletter-banner-layout">
+    <div>
+      <h2 class="text-white font-serif" style="font-size: 2.25rem; margin-bottom: 8px;">
+        New notes, straight to your inbox.
+      </h2>
+      <p style="color: var(--color-slate-navy); font-size: 1rem;">
+        One email each time we publish. You can unsubscribe at any time.
+      </p>
+    </div>
+
+    <div class="newsletter-action-box">
+      <form (ngSubmit)="onSubscribeNewsletter()" class="newsletter-form-large">
+        <input 
+          type="email" 
+          [(ngModel)]="newsletterEmail" 
+          name="email" 
+          placeholder="you@company.com" 
+          class="newsletter-input" 
+          required
+        />
+        <button type="submit" class="btn btn-secondary">Subscribe</button>
+      </form>
+      <label class="form-checkbox-label" style="color: var(--color-slate-navy); margin-top: 12px;">
+        <input type="checkbox" [(ngModel)]="newsletterConsent" name="consent" required />
+        <span>I agree to receive emails from Martand Legal Advisors and have read the privacy policy.</span>
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- Article Reader Modal -->
+@if (activeArticle(); as article) {
+  <div class="modal-backdrop" (click)="closeArticle()">
+    <div class="modal-content article-modal-card" (click)="$event.stopPropagation()">
+      <button class="modal-close-btn" (click)="closeArticle()">×</button>
+      
+      <span class="tag-series" style="margin-bottom: 12px;">{{ article.category }}</span>
+      <h2 class="font-serif article-modal-title">{{ article.title }}</h2>
+      
+      <div class="article-modal-meta">
+        <span>By {{ article.author }}</span>
+        <span>·</span>
+        <span>{{ article.date }}</span>
+        <span>·</span>
+        <span>{{ article.readingTime }}</span>
+      </div>
+
+      <div class="article-modal-body">
+        @for (p of article.content; track p) {
+          <p class="body-text article-p">{{ p }}</p>
+        }
+      </div>
+
+      <div class="article-modal-footer">
+        <button (click)="closeArticle()" class="btn btn-secondary btn-small">Close note</button>
+      </div>
+    </div>
+  </div>
+}

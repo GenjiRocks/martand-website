@@ -1,0 +1,91 @@
+@if (state.isConsultationModalOpen()) {
+  <div class="modal-backdrop" (click)="close()">
+    <div class="modal-content consultation-modal-card" (click)="$event.stopPropagation()">
+      <button class="modal-close-btn" (click)="close()" aria-label="Close dialog">×</button>
+
+      <div class="eyebrow">
+        <span class="sun-marker"></span>
+        <span>GET IN TOUCH</span>
+      </div>
+
+      <h2 class="modal-title">Book a consultation</h2>
+      <p class="modal-subtitle">
+        A short conversation is usually the quickest way to find out how we can help. All enquiries are confidential.
+      </p>
+
+      <form (ngSubmit)="onSubmit()" class="consultation-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Full name *</label>
+            <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Your full name" class="form-input" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Company or organisation</label>
+            <input type="text" [(ngModel)]="company" name="company" placeholder="Where you work" class="form-input" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email address *</label>
+            <input type="email" [(ngModel)]="email" name="email" placeholder="you@company.com" class="form-input" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Mobile number *</label>
+            <input type="tel" [(ngModel)]="phone" name="phone" placeholder="+91 98765 43210" class="form-input" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Practice area</label>
+            <select [(ngModel)]="practiceArea" name="practiceArea" class="form-select">
+              <option value="">Select a practice area</option>
+              @for (area of practiceAreas; track area.id) {
+                <option [value]="area.name">{{ area.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred office</label>
+            <select [(ngModel)]="officeCity" name="officeCity" class="form-select">
+              @for (office of offices; track office.city) {
+                <option [value]="office.city">{{ office.city }} ({{ office.landmark || 'Office' }})</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">How can we help? (Optional outline)</label>
+          <textarea 
+            [(ngModel)]="notes" 
+            name="notes" 
+            placeholder="A short outline of your matter, key timelines, or questions." 
+            class="form-textarea"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-checkbox-label">
+            <input type="checkbox" [(ngModel)]="consentAccepted" name="consentAccepted" required />
+            <span>I agree to Martand Legal Advisors using these details to reply to my enquiry, and I have read the privacy policy. *</span>
+          </label>
+        </div>
+
+        <div class="modal-form-actions">
+          <button type="submit" [disabled]="isSubmitting()" class="btn btn-primary" style="width: 100%;">
+            @if (isSubmitting()) {
+              Sending request...
+            } @else {
+              Send enquiry & book consultation →
+            }
+          </button>
+          <p class="modal-note">
+            Enquiries are emailed directly to office@martandlegal.in. A confirmation is sent once confirmed.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+}

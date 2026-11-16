@@ -1,0 +1,149 @@
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-form-card {
+  padding: 40px;
+}
+
+@media (max-width: 600px) {
+  .contact-form-card {
+    padding: 24px;
+  }
+}
+
+.form-submit-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.submit-note {
+  font-size: 0.8125rem;
+  color: var(--color-slate);
+}
+
+.direct-contact-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.reach-card {
+  padding: 32px;
+}
+
+.reach-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.reach-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-brass-dark);
+  flex-shrink: 0;
+}
+
+.reach-text-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.reach-text-link:hover {
+  color: var(--color-brass-dark);
+}
+
+.reach-hours {
+  font-size: 0.8125rem;
+  color: var(--color-slate);
+  border-top: 1px solid var(--color-line);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+.notice-card {
+  padding: 28px;
+  background-color: var(--color-brass-wash);
+  border-color: #E2D7C2;
+}
+
+.notice-text {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-ink);
+}
+
+.four-offices-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1020px) {
+  .four-offices-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .four-offices-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.office-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+}
+
+.office-card-city {
+  margin-bottom: 12px;
+}
+
+.office-card-address {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.office-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid var(--color-line);
+  padding-top: 16px;
+}
+
+.office-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--color-navy);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.office-action-link:hover {
+  color: var(--color-brass-dark);
+}

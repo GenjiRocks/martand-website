@@ -1,0 +1,96 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <!-- Brand & Newsletter -->
+      <div class="footer-brand-col">
+        <a routerLink="/" class="footer-logo-link">
+          <img src="images/logo-on-dark.png" alt="Martand Legal Advisors" class="footer-logo" />
+        </a>
+        <p class="footer-tagline">
+          Corporate legal advisory and compliance for businesses across India, since 2013.
+        </p>
+
+        <div class="newsletter-box">
+          <span class="newsletter-label">INSIGHTS BY EMAIL</span>
+          <form class="newsletter-form" (ngSubmit)="onSubscribe()">
+            <input 
+              type="email" 
+              [(ngModel)]="newsletterEmail" 
+              name="email" 
+              placeholder="you@company.com" 
+              class="newsletter-input" 
+              required
+            />
+            <button type="submit" class="btn btn-secondary newsletter-btn">
+              Subscribe
+            </button>
+          </form>
+          @if (isSubscribed()) {
+            <p class="newsletter-success">You have been subscribed to our email updates.</p>
+          }
+        </div>
+      </div>
+
+      <!-- Navigation Columns -->
+      <div class="footer-links-col">
+        <h4 class="footer-col-title">FIRM</h4>
+        <ul class="footer-list">
+          <li><a routerLink="/practice-areas" class="footer-link">Practice areas</a></li>
+          <li><a routerLink="/people" class="footer-link">People</a></li>
+          <li><a routerLink="/about" class="footer-link">About</a></li>
+          <li><a routerLink="/insights" class="footer-link">Insights</a></li>
+          <li><a routerLink="/careers" class="footer-link">Careers</a></li>
+          <li><a routerLink="/contact" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Offices Columns -->
+      <div class="footer-offices-col">
+        <h4 class="footer-col-title">OFFICES</h4>
+        <div class="offices-grid">
+          <div class="office-item">
+            <h5 class="office-city">Hyderabad</h5>
+            <p class="office-address">
+              #8-3-322/2, Unit No 910/2, Floor 8th, Vasavi MPM Grand, Ameerpet, Hyderabad 500073
+            </p>
+          </div>
+
+          <div class="office-item">
+            <h5 class="office-city">Indore</h5>
+            <p class="office-address">
+              421, Krishna Business Centre, Behind Medanta Hospital, Vijay Nagar, Indore (M.P.) 452001
+            </p>
+          </div>
+
+          <div class="office-item">
+            <h5 class="office-city">Pune</h5>
+            <p class="office-address">
+              C/o PatentOne IP Services, Meghmalhar, OP-1101, DSK Vishwa, Pune, Maharashtra 411041
+            </p>
+          </div>
+
+          <div class="office-item">
+            <h5 class="office-city">Bengaluru</h5>
+            <p class="office-address">
+              Level 6, Prestige Meridian, MG Road, Bengaluru, Karnataka 560001
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p class="copyright-text">
+        © 2026 Martand Legal Advisors. This website is for information only and is not legal advice or solicitation.
+      </p>
+
+      <div class="footer-legal-links">
+        <a href="#disclaimer" (click)="openDisclaimer($event)" class="legal-link">Disclaimer</a>
+        <a routerLink="/about" class="legal-link">Privacy policy</a>
+        <a routerLink="/about" class="legal-link">Terms of use</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="legal-link">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>

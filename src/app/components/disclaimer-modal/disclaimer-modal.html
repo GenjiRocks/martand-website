@@ -1,0 +1,42 @@
+@if (state.isDisclaimerVisible()) {
+  <div class="modal-backdrop">
+    <div class="modal-content disclaimer-card">
+      <div class="eyebrow disclaimer-eyebrow">
+        <span class="sun-marker"></span>
+        <span>BEFORE YOU CONTINUE</span>
+      </div>
+
+      <h2 class="disclaimer-title">Disclaimer</h2>
+
+      <p class="disclaimer-intro">
+        Under the rules of the Bar Council of India, law firms may not solicit work or advertise. By entering this website you confirm that:
+      </p>
+
+      <ul class="disclaimer-bullets">
+        <li>you are looking for information about Martand Legal Advisors of your own accord;</li>
+        <li>nothing on this website is an advertisement, solicitation or invitation of any kind;</li>
+        <li>the content is general information and is not legal advice; and</li>
+        <li>using this website does not create a lawyer and client relationship.</li>
+      </ul>
+
+      <div class="disclaimer-footer">
+        <label class="form-checkbox-label">
+          <input 
+            type="checkbox" 
+            [checked]="isAccepted()" 
+            (change)="isAccepted.set(!isAccepted())"
+          />
+          <span class="checkbox-text">I have read and accept the above.</span>
+        </label>
+
+        <button 
+          (click)="onEnterWebsite()" 
+          [disabled]="!isAccepted()" 
+          class="btn btn-primary enter-btn"
+        >
+          Enter website →
+        </button>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,209 @@
+<!-- Careers Hero -->
+<section class="page-hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="breadcrumb">
+        <a routerLink="/" class="crumb-link">Home</a>
+        <span class="crumb-sep">/</span>
+        <span class="crumb-current">Careers</span>
+      </div>
+
+      <h1 class="page-title hero-title">Build your practice with us.</h1>
+      <p class="hero-lead">
+        We are interested in ambitious lawyers who value teamwork, and in aspiring legal professionals who want to learn across our practice areas.
+      </p>
+    </div>
+
+    <div class="hero-arc-wrapper">
+      <svg viewBox="0 0 400 240" class="hero-arc" fill="none">
+        <ellipse cx="200" cy="240" rx="140" ry="140" stroke="#B8965E" stroke-width="1.5" opacity="0.6" stroke-dasharray="3 3" />
+        <ellipse cx="200" cy="240" rx="180" ry="180" stroke="#B8965E" stroke-width="2" opacity="0.4" />
+        <ellipse cx="200" cy="240" rx="220" ry="220" stroke="#25354C" stroke-width="2" opacity="0.8" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Recruitment vs Internships Overview Cards -->
+<section class="section">
+  <div class="container">
+    <div class="careers-top-grid">
+      <!-- Recruitment Card -->
+      <div class="card career-path-card">
+        <div class="eyebrow" style="margin-bottom: 12px;">
+          <span class="sun-marker"></span>
+          <span>LAWYERS AND ASSOCIATES</span>
+        </div>
+        <h3 class="panel-heading" style="margin-bottom: 16px;">Recruitment</h3>
+        <p class="body-text" style="margin-bottom: 24px;">
+          For young lawyers looking for experience, and for mid-level and senior associates looking for a new opportunity.
+        </p>
+        <ul class="career-bullets">
+          <li><span class="check-icon">✓</span> Send your resume and a cover letter</li>
+          <li><span class="check-icon">✓</span> Tell us your year of qualification</li>
+          <li><span class="check-icon">✓</span> Tell us the practice area that interests you</li>
+        </ul>
+      </div>
+
+      <!-- Internships Card -->
+      <div class="card career-path-card">
+        <div class="eyebrow" style="margin-bottom: 12px;">
+          <span class="sun-marker"></span>
+          <span>STUDENTS AND GRADUATES</span>
+        </div>
+        <h3 class="panel-heading" style="margin-bottom: 16px;">Internships</h3>
+        <p class="body-text" style="margin-bottom: 24px;">
+          For aspiring legal professionals who want to work across the firm's practice areas. The minimum internship period is three months.
+        </p>
+        <ul class="career-bullets">
+          <li><span class="check-icon">✓</span> Send your resume and a cover letter</li>
+          <li><span class="check-icon">✓</span> Tell us your preferred internship period</li>
+          <li><span class="check-icon">✓</span> Tell us your preferred office location</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Application Form & Information Panels -->
+    <div class="application-layout">
+      <!-- Left: Application Form -->
+      <div class="card application-form-card">
+        <h3 class="panel-heading" style="margin-bottom: 8px;">Apply online</h3>
+        <p class="body-text" style="font-size: 0.875rem; margin-bottom: 28px;">
+          Fields marked * are required.
+        </p>
+
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Full name *</label>
+              <input type="text" [(ngModel)]="fullName" name="fullName" placeholder="Your full name" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email address *</label>
+              <input type="email" [(ngModel)]="email" name="email" placeholder="you@example.com" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Mobile number *</label>
+              <input type="tel" [(ngModel)]="mobile" name="mobile" placeholder="Country code and number" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Applying for *</label>
+              <select [(ngModel)]="applyingFor" name="applyingFor" class="form-select">
+                <option value="Recruitment">Recruitment (Associates)</option>
+                <option value="Internship">Internship (Students/Graduates)</option>
+              </select>
+            </div>
+
+            @if (applyingFor === 'Recruitment') {
+              <div class="form-group">
+                <label class="form-label">Year of qualification</label>
+                <input type="text" [(ngModel)]="yearOfQualification" name="yearOfQualification" placeholder="YYYY (e.g. 2022)" class="form-input" />
+              </div>
+            } @else {
+              <div class="form-group">
+                <label class="form-label">Preferred period (internship)</label>
+                <input type="text" [(ngModel)]="preferredPeriod" name="preferredPeriod" placeholder="For example, January to March 2027" class="form-input" />
+              </div>
+            }
+
+            <div class="form-group">
+              <label class="form-label">Preferred office *</label>
+              <select [(ngModel)]="preferredOffice" name="preferredOffice" class="form-select">
+                @for (office of offices; track office.city) {
+                  <option [value]="office.city">{{ office.city }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred practice area</label>
+            <select [(ngModel)]="preferredPractice" name="preferredPractice" class="form-select">
+              <option value="">Select a practice area</option>
+              @for (area of practiceAreas; track area.id) {
+                <option [value]="area.name">{{ area.name }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- File Upload Zone -->
+          <div class="form-group">
+            <label class="form-label">Resume *</label>
+            <div 
+              class="upload-dropzone" 
+              (drop)="onFileDrop($event)" 
+              (dragover)="onDragOver($event)"
+            >
+              <div class="dropzone-text">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>
+                  @if (uploadedFileName()) {
+                    Selected: <strong>{{ uploadedFileName() }}</strong>
+                  } @else {
+                    Drop your resume here, or choose a file. PDF or Word, up to 5 MB.
+                  }
+                </span>
+              </div>
+              <label class="btn btn-secondary btn-small" style="margin: 0; cursor: pointer;">
+                Choose file
+                <input type="file" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx" style="display: none;" />
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Cover letter</label>
+            <textarea 
+              [(ngModel)]="coverLetter" 
+              name="coverLetter" 
+              placeholder="Introduce yourself and tell us what interests you." 
+              class="form-textarea"
+              rows="4"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-checkbox-label">
+              <input type="checkbox" [(ngModel)]="consentAccepted" name="consentAccepted" required />
+              <span>I agree to Martand Legal Advisors using these details to consider my application, and I have read the privacy policy. *</span>
+            </label>
+          </div>
+
+          <button type="submit" [disabled]="isSubmitting()" class="btn btn-primary">
+            @if (isSubmitting()) {
+              Submitting...
+            } @else {
+              Submit application →
+            }
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Informational Panels -->
+      <div class="career-info-column">
+        <div class="card career-info-card">
+          <h4 class="card-title" style="margin-bottom: 10px;">Prefer email?</h4>
+          <p class="body-text" style="font-size: 0.9375rem; margin-bottom: 16px;">
+            Write to <a href="mailto:office@martandlegal.in" class="text-link">office&#64;martandlegal.in</a> with one of these subject lines:
+          </p>
+          <div class="subject-tag">Application for Job</div>
+          <div class="subject-tag">Application for Internship</div>
+        </div>
+
+        <div class="card career-info-card" style="margin-top: 24px;">
+          <h4 class="card-title" style="margin-bottom: 10px;">What happens next</h4>
+          <p class="body-text" style="font-size: 0.9375rem;">
+            We review applications within 10 working days. Shortlisted candidates are invited for an interview with practice partners either in person or via video conference.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

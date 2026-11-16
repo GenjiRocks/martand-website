@@ -1,0 +1,135 @@
+<!-- Practice Areas Hero -->
+<section class="page-hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="breadcrumb">
+        <a routerLink="/" class="crumb-link">Home</a>
+        <span class="crumb-sep">/</span>
+        <span class="crumb-link">Practice areas</span>
+        <span class="crumb-sep">/</span>
+        <span class="crumb-current">{{ activeArea().name }}</span>
+      </div>
+
+      <h1 class="page-title hero-title">{{ activeArea().name }}</h1>
+      <p class="hero-lead">{{ activeArea().leadParagraph }}</p>
+    </div>
+
+    <div class="hero-arc-wrapper">
+      <svg viewBox="0 0 400 240" class="hero-arc" fill="none">
+        <ellipse cx="200" cy="240" rx="140" ry="140" stroke="#B8965E" stroke-width="1.5" opacity="0.6" stroke-dasharray="3 3" />
+        <ellipse cx="200" cy="240" rx="180" ry="180" stroke="#B8965E" stroke-width="2" opacity="0.4" />
+        <ellipse cx="200" cy="240" rx="220" ry="220" stroke="#25354C" stroke-width="2" opacity="0.8" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Content Section -->
+<section class="section">
+  <div class="container content-layout">
+    <!-- Left Navigation List -->
+    <aside class="sidebar-nav">
+      <span class="sidebar-eyebrow">PRACTICE AREAS</span>
+      <div class="sidebar-list">
+        @for (area of practiceAreas; track area.id) {
+          <button 
+            type="button" 
+            class="sidebar-item" 
+            [class.active]="activeArea().id === area.id"
+            (click)="setActiveArea(area)"
+          >
+            <span>{{ area.name }}</span>
+            <span class="sidebar-arrow">›</span>
+          </button>
+        }
+      </div>
+    </aside>
+
+    <!-- Main Practice Detail Area -->
+    <main class="main-detail">
+      <!-- How we help -->
+      <div class="detail-block">
+        <h2 class="block-heading">How we help</h2>
+        <p class="body-text block-lead">{{ activeArea().description }}</p>
+        <p class="body-text">
+          Our lawyers, company secretaries, and chartered accountants collaborate under one roof to ensure every transaction, regulatory approval, and structuring requirement is resolved without handoffs or delays.
+        </p>
+      </div>
+
+      <!-- What we handle -->
+      <div class="detail-block">
+        <h2 class="block-heading">What we handle</h2>
+        <div class="handle-grid">
+          @for (topic of activeArea().handledTopics; track topic.title) {
+            <div class="card handle-card">
+              <h4 class="handle-title">{{ topic.title }}</h4>
+              <p class="body-text handle-desc">{{ topic.desc }}</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Representative Experience -->
+      <div class="detail-block">
+        <h2 class="block-heading">Representative experience</h2>
+        <ul class="experience-list">
+          @for (exp of activeArea().representativeExperience; track exp) {
+            <li class="experience-item">{{ exp }}</li>
+          }
+        </ul>
+        <p class="experience-note">
+          Clients are described without names unless they have agreed to be named.
+        </p>
+      </div>
+
+      <!-- Your Contact -->
+      <div class="detail-block">
+        <h2 class="block-heading">Your contact</h2>
+        <div class="contact-pair-grid">
+          <div class="card contact-person-card">
+            <div class="contact-avatar">
+              {{ contactPerson().name.charAt(0) }}
+            </div>
+            <div>
+              <h4 class="contact-name">{{ contactPerson().name }}</h4>
+              <p class="contact-role">{{ contactPerson().designation }} · {{ contactPerson().office }}</p>
+              <div class="contact-links">
+                <a href="mailto:{{ contactPerson().email }}" class="contact-meta-link">{{ contactPerson().email }}</a>
+                <span class="contact-sep">·</span>
+                <a href="tel:{{ contactPerson().phone }}" class="contact-meta-link">{{ contactPerson().phone }}</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card consultation-prompt-card">
+            <h4 class="card-title" style="margin-bottom: 12px;">Have a question about {{ activeArea().name }}?</h4>
+            <p class="body-text" style="font-size: 0.9375rem; margin-bottom: 20px;">
+              Speak directly with our practice leaders for confidential guidance.
+            </p>
+            <button (click)="openConsultation()" class="btn btn-primary btn-small">
+              Book a consultation →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Insights -->
+      <div class="detail-block">
+        <h2 class="block-heading">Related insights</h2>
+        <div class="insights-grid">
+          @for (article of relatedInsights(); track article.id) {
+            <div class="card related-insight-card">
+              <span class="tag-series">{{ article.category }}</span>
+              <h4 class="card-title" style="margin-bottom: 8px;">{{ article.title }}</h4>
+              <p class="body-text" style="font-size: 0.9375rem; margin-bottom: 18px;">{{ article.summary }}</p>
+              <div class="insight-meta">
+                <span>{{ article.author }}</span>
+                <span>{{ article.date }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </main>
+  </div>
+</section>

@@ -1,0 +1,159 @@
+<!-- About Hero -->
+<section class="page-hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="breadcrumb">
+        <a routerLink="/" class="crumb-link">Home</a>
+        <span class="crumb-sep">/</span>
+        <span class="crumb-current">About</span>
+      </div>
+
+      <h1 class="page-title hero-title">A corporate law firm built as one team.</h1>
+      <p class="hero-lead">
+        Martand Legal Advisors was started in early 2013 by young lawyers who wanted every corporate legal service to be available in one place.
+      </p>
+    </div>
+
+    <div class="hero-arc-wrapper">
+      <svg viewBox="0 0 400 240" class="hero-arc" fill="none">
+        <ellipse cx="200" cy="240" rx="140" ry="140" stroke="#B8965E" stroke-width="1.5" opacity="0.6" stroke-dasharray="3 3" />
+        <ellipse cx="200" cy="240" rx="180" ry="180" stroke="#B8965E" stroke-width="2" opacity="0.4" />
+        <ellipse cx="200" cy="240" rx="220" ry="220" stroke="#25354C" stroke-width="2" opacity="0.8" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Our Story Section -->
+<section class="section">
+  <div class="container story-layout">
+    <div class="story-content">
+      <div class="eyebrow" style="margin-bottom: 12px;">
+        <span class="sun-marker"></span>
+        <span>OUR STORY</span>
+      </div>
+      <h2 class="section-heading" style="margin-bottom: 24px;">Started with a simple idea.</h2>
+
+      <p class="body-text" style="font-size: 1.125rem; color: var(--color-ink); margin-bottom: 20px;">
+        A growing business should not need a different adviser for every question. Our work today covers corporate law and compliance, commercial agreements, intellectual property, FEMA, corporate advisory, mergers and acquisitions and employee stock options.
+      </p>
+
+      <p class="body-text" style="margin-bottom: 20px;">
+        Behind that is a team of lawyers, chartered accountants, company secretaries, intellectual property experts and registered valuers who keep up with changes in the law and bring them to each matter.
+      </p>
+
+      <p class="body-text">
+        From our foundation in Hyderabad, we have expanded to Indore, Pune, and Bengaluru—working as one unified national bench for founders, institutions, and global investors.
+      </p>
+    </div>
+
+    <!-- Who We Advise Card -->
+    <div class="card advise-card">
+      <div class="eyebrow" style="margin-bottom: 16px;">
+        <span class="sun-marker"></span>
+        <span>WHO WE ADVISE</span>
+      </div>
+
+      <div class="advise-list">
+        @for (item of whoWeAdvise; track item.title) {
+          <div class="advise-item">
+            <h4 class="advise-title">{{ item.title }}</h4>
+            <p class="advise-desc">{{ item.desc }}</p>
+          </div>
+        }
+      </div>
+
+      <div class="advise-footer">
+        Our services are available across India, from four offices.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Milestones Section -->
+<section class="section milestones-section">
+  <div class="container">
+    <div class="eyebrow" style="margin-bottom: 12px;">
+      <span class="sun-marker"></span>
+      <span>MILESTONES</span>
+    </div>
+    <h2 class="section-heading" style="margin-bottom: 48px;">From 2013 to today.</h2>
+
+    <div class="milestones-timeline">
+      @for (m of milestones; track m.year) {
+        <div class="timeline-step">
+          <div class="timeline-marker">
+            <span class="marker-dot"></span>
+          </div>
+          <div class="timeline-body">
+            <span class="timeline-year">{{ m.year }}</span>
+            <h4 class="timeline-title">{{ m.title }}</h4>
+            <p class="body-text timeline-desc">{{ m.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Five Values Section (Dark Navy Band) -->
+<section class="values-section">
+  <div class="container">
+    <div class="eyebrow eyebrow-on-navy" style="margin-bottom: 12px;">
+      <span class="sun-marker"></span>
+      <span>WHAT WE STAND FOR</span>
+    </div>
+    <h2 class="section-heading text-white" style="margin-bottom: 48px;">
+      Five values, with clients at the centre.
+    </h2>
+
+    <div class="values-grid">
+      @for (v of values; track v.title) {
+        <div class="value-item">
+          <h4 class="value-title">{{ v.title }}</h4>
+          <p class="value-desc">{{ v.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Vision & Mission Panels -->
+<section class="section">
+  <div class="container vision-mission-grid">
+    <div class="card vision-card">
+      <div class="eyebrow" style="margin-bottom: 12px;">
+        <span class="sun-marker"></span>
+        <span>VISION</span>
+      </div>
+      <h3 class="panel-heading" style="margin-bottom: 16px;">
+        To be a firm clients rely on: respectful of every person we deal with, accessible in what we charge and dependable in what we deliver.
+      </h3>
+    </div>
+
+    <div class="card mission-card">
+      <div class="eyebrow" style="margin-bottom: 12px;">
+        <span class="sun-marker"></span>
+        <span>MISSION</span>
+      </div>
+      <h3 class="panel-heading" style="margin-bottom: 16px;">
+        To connect brands, individuals, government authorities and global clients with the corporate, intellectual property, M&A and commercial expertise they need.
+      </h3>
+    </div>
+  </div>
+</section>
+
+<!-- Meet the people behind the firm Callout Banner -->
+<section class="join-banner">
+  <div class="container join-container">
+    <div>
+      <h2 class="headline-banner">Meet the people behind the firm.</h2>
+      <p class="banner-subtext">
+        Lawyers, chartered accountants, company secretaries, intellectual property experts and registered valuers.
+      </p>
+    </div>
+    <a routerLink="/people" class="btn btn-primary">
+      Meet the team →
+    </a>
+  </div>
+</section>

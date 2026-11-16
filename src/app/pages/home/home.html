@@ -1,0 +1,299 @@
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="container hero-container">
+    <div class="hero-content">
+      <div class="eyebrow eyebrow-on-navy hero-eyebrow">
+        <span class="sun-marker"></span>
+        <span>CORPORATE LAW FIRM, SINCE 2013</span>
+      </div>
+
+      <h1 class="headline-home hero-headline">
+        Every corporate<br />
+        legal need,<br />
+        under one roof.
+      </h1>
+
+      <p class="hero-lead">
+        Lawyers, chartered accountants, company secretaries, intellectual property experts and registered valuers, working as one team for companies, founders and investors across India.
+      </p>
+
+      <div class="hero-actions">
+        <button (click)="openConsultationModal()" class="btn btn-primary-on-navy">
+          Book a consultation →
+        </button>
+        <a routerLink="/practice-areas" class="btn btn-secondary-on-navy">
+          Explore practice areas
+        </a>
+      </div>
+
+      <div class="hero-cities">
+        <span>HYDERABAD</span>
+        <span class="city-dot">·</span>
+        <span>INDORE</span>
+        <span class="city-dot">·</span>
+        <span>PUNE</span>
+        <span class="city-dot">·</span>
+        <span>BENGALURU</span>
+      </div>
+    </div>
+
+    <!-- Sunrise Concentric Rings Graphic -->
+    <div class="hero-graphic-col">
+      <div class="sunrise-container">
+        <div class="sunrise-disc-wrapper">
+          <svg class="sunrise-rings" viewBox="0 0 600 320" width="100%" height="auto" fill="none">
+            <!-- Concentric Half-Circles / Arcs in Brass and Navy Line -->
+            <ellipse cx="300" cy="320" rx="120" ry="120" stroke="#B8965E" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6" />
+            <ellipse cx="300" cy="320" rx="180" ry="180" stroke="#B8965E" stroke-width="1.5" opacity="0.4" />
+            <ellipse cx="300" cy="320" rx="240" ry="240" stroke="#B8965E" stroke-width="2" opacity="0.7" />
+            <ellipse cx="300" cy="320" rx="290" ry="290" stroke="#25354C" stroke-width="1.5" opacity="0.8" />
+            <!-- Solid glowing sun horizon arc -->
+            <path d="M 180 320 A 120 120 0 0 1 420 320 Z" fill="url(#sunGrad)" opacity="0.18" />
+            <defs>
+              <linearGradient id="sunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#B8965E" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#0E1B2E" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACTS STRIP -->
+<section id="facts-strip" class="facts-section">
+  <div class="container">
+    <div class="facts-grid">
+      @for (fact of facts; track fact.label; let i = $index) {
+        <div class="fact-card reveal-init">
+          <div class="fact-number">
+            {{ counterValues()[i] }}
+          </div>
+          <p class="fact-label">{{ fact.label }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE AREAS SECTION (INTERACTIVE PICKER) -->
+<section class="section practice-section">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <div>
+        <div class="eyebrow">
+          <span class="sun-marker"></span>
+          <span>PRACTICE AREAS</span>
+        </div>
+        <h2 class="section-heading">Advice for each stage of a company's life.</h2>
+      </div>
+      <a routerLink="/practice-areas" class="text-link">All practice areas →</a>
+    </div>
+
+    <!-- Desktop Interactive Picker -->
+    <div class="practice-picker-layout reveal-init">
+      <!-- Left List -->
+      <div class="practice-list">
+        @for (area of practiceAreas; track area.id) {
+          <button 
+            type="button" 
+            class="practice-item" 
+            [class.active]="selectedArea().id === area.id"
+            (click)="selectArea(area)"
+          >
+            <span>{{ area.name }}</span>
+            <span class="item-arrow">›</span>
+          </button>
+        }
+      </div>
+
+      <!-- Right Active Panel -->
+      <div class="practice-panel panel-large">
+        <div class="eyebrow" style="margin-bottom: 12px;">
+          <span class="sun-marker"></span>
+          <span>PRACTICE AREA</span>
+        </div>
+
+        <h3 class="panel-heading" style="margin-bottom: 16px;">
+          {{ selectedArea().name }}
+        </h3>
+
+        <p class="body-text" style="margin-bottom: 24px;">
+          {{ selectedArea().leadParagraph }}
+        </p>
+
+        <ul class="practice-offerings">
+          @for (item of selectedArea().offerings.slice(0, 3); track item) {
+            <li class="offering-item">
+              <span class="check-icon">✓</span>
+              <span>{{ item }}</span>
+            </li>
+          }
+        </ul>
+
+        <div style="margin-top: 36px;">
+          <a routerLink="/practice-areas" class="btn btn-primary">
+            View this practice →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOGNITION BAND (CONTINUOUS MARQUEE) -->
+<section class="recognition-section">
+  <div class="container">
+    <div class="recognition-header reveal-init">
+      <div>
+        <div class="eyebrow eyebrow-on-navy">
+          <span class="sun-marker"></span>
+          <span>AWARDS AND RANKINGS</span>
+        </div>
+        <h2 class="section-heading text-white">Recognition</h2>
+      </div>
+      <p class="recognition-caption">
+        Awards, rankings and memberships, listed as published by the awarding body.
+      </p>
+    </div>
+  </div>
+
+  <!-- Marquee Container -->
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <!-- First set -->
+      @for (item of recognitions; track item.title + 'a') {
+        <div class="recognition-card">
+          <span class="rec-year">{{ item.year }}</span>
+          <h4 class="rec-title">{{ item.title }}</h4>
+          <p class="rec-publisher">{{ item.publisher }}</p>
+          <span class="rec-band">{{ item.practiceAndBand }}</span>
+        </div>
+      }
+      <!-- Duplicated set for seamless loop -->
+      @for (item of recognitions; track item.title + 'b') {
+        <div class="recognition-card">
+          <span class="rec-year">{{ item.year }}</span>
+          <h4 class="rec-title">{{ item.title }}</h4>
+          <p class="rec-publisher">{{ item.publisher }}</p>
+          <span class="rec-band">{{ item.practiceAndBand }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- RECENT WORK SECTION -->
+<section class="section recent-work-section">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <div>
+        <div class="eyebrow">
+          <span class="sun-marker"></span>
+          <span>RECENT WORK</span>
+        </div>
+        <h2 class="section-heading">What we have been working on.</h2>
+      </div>
+      <a routerLink="/insights" class="text-link">All recent work →</a>
+    </div>
+
+    <div class="three-col-grid reveal-init">
+      @for (item of recentWork; track item.description) {
+        <div class="card recent-work-card">
+          <span class="work-date">{{ item.monthYear }}</span>
+          <p class="work-desc">{{ item.description }}</p>
+          <div class="card-footer">
+            <span class="tag-neutral">{{ item.practiceArea }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE SECTION -->
+<section class="section people-section">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <div>
+        <div class="eyebrow">
+          <span class="sun-marker"></span>
+          <span>PEOPLE</span>
+        </div>
+        <h2 class="section-heading">The team you will work with.</h2>
+      </div>
+      <a routerLink="/people" class="text-link">Meet the team →</a>
+    </div>
+
+    <div class="people-grid reveal-init">
+      @for (member of teamMembers; track member.id) {
+        <div class="card person-card">
+          <div class="person-photo-placeholder">
+            <div class="avatar-initials">
+              {{ member.name.charAt(0) }}
+            </div>
+          </div>
+          <div class="person-details">
+            <h4 class="person-name">{{ member.name }}</h4>
+            <p class="person-designation">{{ member.designation }} · {{ member.practiceArea }}</p>
+            <div class="person-office-tag">{{ member.office }}</div>
+            <div class="person-actions">
+              <a href="mailto:{{ member.email }}" class="text-link" style="font-size: 0.8125rem;">Email</a>
+              <span class="action-divider">·</span>
+              <a routerLink="/people" class="text-link" style="font-size: 0.8125rem;">Profile</a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS SECTION -->
+<section class="section insights-section">
+  <div class="container">
+    <div class="section-header reveal-init">
+      <div>
+        <div class="eyebrow">
+          <span class="sun-marker"></span>
+          <span>INSIGHTS</span>
+        </div>
+        <h2 class="section-heading">Notes on the law that shapes business.</h2>
+      </div>
+      <a routerLink="/insights" class="text-link">All insights →</a>
+    </div>
+
+    <div class="three-col-grid reveal-init">
+      @for (article of insights; track article.id) {
+        <div class="card insight-card">
+          <span class="tag-series">{{ article.category }}</span>
+          <h4 class="card-title" style="margin-bottom: 12px;">{{ article.title }}</h4>
+          <p class="body-text" style="font-size: 0.9375rem; margin-bottom: 24px;">{{ article.summary }}</p>
+          <div class="insight-meta">
+            <span>{{ article.author }}</span>
+            <span>{{ article.date }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION CALLOUT BANNER -->
+<section class="consultation-banner reveal-init">
+  <div class="container banner-container">
+    <div class="banner-content">
+      <h2 class="headline-banner">Tell us what you are working on.</h2>
+      <p class="banner-subtext">
+        A short conversation is usually the quickest way to find out how we can help.
+      </p>
+    </div>
+    <div class="banner-action">
+      <button (click)="openConsultationModal()" class="btn btn-primary">
+        Book a consultation →
+      </button>
+    </div>
+  </div>
+</section>
