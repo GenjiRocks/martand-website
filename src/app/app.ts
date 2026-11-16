@@ -1,6 +1,6 @@
 import { Component, inject, signal, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterOutlet, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import { filter, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { NavbarComponent } from './components/navbar/navbar';
 import { FooterComponent } from './components/footer/footer';
 import { DisclaimerModalComponent } from './components/disclaimer-modal/disclaimer-modal';
@@ -27,9 +27,12 @@ export class App implements OnInit, OnDestroy {
 
   readonly title = 'Martand Legal Advisors';
   readonly isNavigating = signal<boolean>(false);
-  readonly routeKey = signal<string>('');
+  readonly isPageEntering = signal<boolean>(false);
 
   ngOnInit(): void {
+    // Initial entrance animation
+    this.triggerPageEnter();
+
     this.sub = this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.isNavigating.set(true);
@@ -39,14 +42,23 @@ export class App implements OnInit, OnDestroy {
         event instanceof NavigationError
       ) {
         if (event instanceof NavigationEnd) {
-          this.routeKey.set(event.urlAfterRedirects || event.url);
+          this.triggerPageEnter();
         }
-        // Small delay to ensure smooth progress bar completion
         setTimeout(() => {
           this.isNavigating.set(false);
-        }, 180);
+        }, 220);
       }
     });
+  }
+
+  private triggerPageEnter(): void {
+    this.isPageEntering.set(false);
+    setTimeout(() => {
+      this.isPageEntering.set(true);
+      setTimeout(() => {
+        this.isPageEntering.set(false);
+      }, 700);
+    }, 20);
   }
 
   ngOnDestroy(): void {

@@ -25,40 +25,143 @@
   height: 100%;
   width: 0;
   background: linear-gradient(90deg, #B8965E 0%, #D4AF37 50%, #8C6A2F 100%);
-  box-shadow: 0 0 10px rgba(184, 150, 94, 0.7);
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 12px rgba(184, 150, 94, 0.85);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .top-progress-bar.active .top-progress-fill {
   width: 100%;
-  animation: progressAnim 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: progressAnim 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes progressAnim {
   0% {
     width: 0%;
   }
-  60% {
-    width: 75%;
+  50% {
+    width: 70%;
   }
   100% {
     width: 100%;
   }
 }
 
-/* Page content fade and subtle upward float on route transition */
-.page-transition-wrapper {
-  animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: opacity, transform;
+/* Professional Page Transition Frame */
+.page-transition-frame {
+  width: 100%;
+  min-height: inherit;
 }
 
-@keyframes pageFadeIn {
+.page-transition-frame.is-entering {
+  animation: professionalPageReveal 0.52s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform, filter;
+}
+
+@keyframes professionalPageReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.995);
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 0.95;
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Staggered entrance for Hero elements on page change */
+.page-transition-frame.is-entering .page-hero .breadcrumb {
+  animation: heroBreadcrumbEnter 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.page-transition-frame.is-entering .page-hero .hero-title,
+.page-transition-frame.is-entering .hero-section .hero-headline {
+  animation: heroTitleEnter 0.52s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.page-transition-frame.is-entering .page-hero .hero-lead,
+.page-transition-frame.is-entering .hero-section .hero-lead {
+  animation: heroLeadEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+
+.page-transition-frame.is-entering .hero-arc-wrapper,
+.page-transition-frame.is-entering .sunrise-container {
+  animation: heroArcGlaze 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.page-transition-frame.is-entering .section {
+  animation: sectionFloatEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+}
+
+@keyframes heroBreadcrumbEnter {
   from {
-    opacity: 0.85;
-    transform: translateY(8px);
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroTitleEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes heroLeadEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroArcGlaze {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes sectionFloatEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-frame.is-entering,
+  .page-transition-frame.is-entering .page-hero .breadcrumb,
+  .page-transition-frame.is-entering .page-hero .hero-title,
+  .page-transition-frame.is-entering .page-hero .hero-lead,
+  .page-transition-frame.is-entering .section {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
   }
 }

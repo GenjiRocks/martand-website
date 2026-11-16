@@ -40,14 +40,10 @@
     <div class="directory-toolbar">
       <div class="office-filter-group">
         @for (office of ['All offices', 'Hyderabad', 'Indore', 'Pune', 'Bengaluru']; track office) {
-          <button 
-            type="button" 
-            class="filter-btn" 
-            [class.active]="selectedOffice() === office"
-            (click)="setOffice(office)"
-          >
-            {{ office }}
-          </button>
+        <button type="button" class="filter-btn" [class.active]="selectedOffice() === office"
+          (click)="setOffice(office)">
+          {{ office }}
+        </button>
         }
       </div>
 
@@ -56,49 +52,45 @@
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input 
-          type="text" 
-          [ngModel]="searchQuery()" 
-          (ngModelChange)="searchQuery.set($event)"
-          placeholder="Search by name or practice" 
-          class="search-input"
-        />
+        <input type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)"
+          placeholder="Search by name or practice" class="search-input" />
       </div>
     </div>
 
     <!-- People Grid -->
     <div class="people-grid-full">
       @for (member of filteredMembers(); track member.id) {
-        <div class="card person-card-item">
-          <div class="person-photo-box" (click)="openProfile(member)">
-            <div class="avatar-circle">
-              {{ member.name.charAt(0) }}
-            </div>
-            <div class="hover-view-tag">View profile →</div>
+      <div class="card person-card-item">
+        <div class="person-photo-box" (click)="openProfile(member)">
+          <div class="avatar-circle">
+            {{ member.name.charAt(0) }}
           </div>
+          <div class="hover-view-tag">View profile →</div>
+        </div>
 
-          <div class="person-card-body">
-            <h3 class="person-title" (click)="openProfile(member)">{{ member.name }}</h3>
-            <p class="person-sub">{{ member.designation }} · {{ member.practiceArea }}</p>
-            <div class="person-loc">{{ member.office }}</div>
+        <div class="person-card-body">
+          <h3 class="person-title" (click)="openProfile(member)">{{ member.name }}</h3>
+          <p class="person-sub">{{ member.designation }} · {{ member.practiceArea }}</p>
+          <div class="person-loc">{{ member.office }}</div>
 
-            <div class="person-card-actions">
-              <a href="mailto:{{ member.email }}" class="card-action-link">Email</a>
-              <span class="action-sep">·</span>
-              <a [href]="member.linkedin" target="_blank" rel="noopener noreferrer" class="card-action-link">LinkedIn</a>
-            </div>
+          <div class="person-card-actions">
+            <a href="mailto:{{ member.email }}" class="card-action-link">Email</a>
+            <span class="action-sep">·</span>
+            <a [href]="member.linkedin" target="_blank" rel="noopener noreferrer" class="card-action-link">LinkedIn</a>
           </div>
         </div>
+      </div>
       }
     </div>
 
     @if (filteredMembers().length === 0) {
-      <div class="no-results-box">
-        <p>No team members match your filter criteria.</p>
-        <button (click)="selectedOffice.set('All offices'); searchQuery.set('')" class="btn btn-secondary btn-small" style="margin-top: 12px;">
-          Reset filters
-        </button>
-      </div>
+    <div class="no-results-box">
+      <p>No team members match your filter criteria.</p>
+      <button (click)="selectedOffice.set('All offices'); searchQuery.set('')" class="btn btn-secondary btn-small"
+        style="margin-top: 12px;">
+        Reset filters
+      </button>
+    </div>
     }
   </div>
 </section>
@@ -120,46 +112,46 @@
 
 <!-- Lawyer Profile Detail Modal -->
 @if (activeProfile(); as member) {
-  <div class="modal-backdrop" (click)="closeProfile()">
-    <div class="modal-content profile-modal-card" (click)="$event.stopPropagation()">
-      <button class="modal-close-btn" (click)="closeProfile()">×</button>
+<div class="modal-backdrop" (click)="closeProfile()">
+  <div class="modal-content profile-modal-card" (click)="$event.stopPropagation()">
+    <button class="modal-close-btn" (click)="closeProfile()">×</button>
 
-      <div class="profile-header-layout">
-        <div class="profile-avatar-large">
-          {{ member.name.charAt(0) }}
-        </div>
-        <div>
-          <span class="tag-neutral" style="margin-bottom: 8px;">{{ member.discipline }}</span>
-          <h2 class="font-serif" style="font-size: 2rem; margin-bottom: 4px;">{{ member.name }}</h2>
-          <p class="body-text" style="color: var(--color-ink); font-weight: 500;">
-            {{ member.designation }} · {{ member.practiceArea }}
-          </p>
-          <p class="body-text" style="font-size: 0.875rem;">Office: {{ member.office }}</p>
-        </div>
+    <div class="profile-header-layout">
+      <div class="profile-avatar-large">
+        {{ member.name.charAt(0) }}
+      </div>
+      <div>
+        <span class="tag-neutral" style="margin-bottom: 8px;">{{ member.discipline }}</span>
+        <h2 class="font-serif" style="font-size: 2rem; margin-bottom: 4px;">{{ member.name }}</h2>
+        <p class="body-text" style="color: var(--color-ink); font-weight: 500;">
+          {{ member.designation }} · {{ member.practiceArea }}
+        </p>
+        <p class="body-text" style="font-size: 0.875rem;">Office: {{ member.office }}</p>
+      </div>
+    </div>
+
+    <div class="profile-body-content">
+      <div class="profile-section">
+        <h4 class="profile-subheading">About</h4>
+        <p class="body-text">{{ member.bio }}</p>
       </div>
 
-      <div class="profile-body-content">
-        <div class="profile-section">
-          <h4 class="profile-subheading">About</h4>
-          <p class="body-text">{{ member.bio }}</p>
-        </div>
+      <div class="profile-section">
+        <h4 class="profile-subheading">Experience & Practice</h4>
+        <p class="body-text">{{ member.experience }}</p>
+      </div>
 
-        <div class="profile-section">
-          <h4 class="profile-subheading">Experience & Practice</h4>
-          <p class="body-text">{{ member.experience }}</p>
-        </div>
+      <div class="profile-section">
+        <h4 class="profile-subheading">Qualifications</h4>
+        <p class="body-text">{{ member.qualifications }}</p>
+      </div>
 
-        <div class="profile-section">
-          <h4 class="profile-subheading">Qualifications</h4>
-          <p class="body-text">{{ member.qualifications }}</p>
-        </div>
-
-        <div class="profile-contact-bar">
-          <a href="mailto:{{ member.email }}" class="btn btn-primary btn-small">Email {{ member.name.split(' ')[0] }}</a>
-          <a [href]="member.linkedin" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-small">LinkedIn</a>
-        </div>
+      <div class="profile-contact-bar">
+        <a href="mailto:{{ member.email }}" class="btn btn-primary btn-small">Email {{ member.name.split(' ')[0] }}</a>
+        <a [href]="member.linkedin" target="_blank" rel="noopener noreferrer"
+          class="btn btn-secondary btn-small">LinkedIn</a>
       </div>
     </div>
   </div>
+</div>
 }
-

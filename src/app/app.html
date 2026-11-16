@@ -1,4 +1,4 @@
-<!-- Top Header Navigation Progress Bar -->
+<!-- Top Header Navigation Progress Ribbon -->
 <div class="top-progress-bar" [class.active]="isNavigating()">
   <div class="top-progress-fill"></div>
 </div>
@@ -6,7 +6,8 @@
 <app-navbar></app-navbar>
 
 <main class="site-main">
-  <div class="page-transition-wrapper">
+  <!-- Page Transition Frame -->
+  <div class="page-transition-frame" [class.is-entering]="isPageEntering()">
     <router-outlet></router-outlet>
   </div>
 </main>
