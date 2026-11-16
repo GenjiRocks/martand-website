@@ -32,3 +32,4 @@ export class FooterComponent {
     this.state.openDisclaimer();
   }
 }
+

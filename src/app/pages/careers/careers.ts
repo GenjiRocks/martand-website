@@ -72,3 +72,4 @@ export class CareersComponent {
     this.consentAccepted = false;
   }
 }
+

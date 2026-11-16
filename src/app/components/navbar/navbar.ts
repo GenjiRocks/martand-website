@@ -34,3 +34,4 @@ export class NavbarComponent {
     this.state.openConsultation();
   }
 }
+

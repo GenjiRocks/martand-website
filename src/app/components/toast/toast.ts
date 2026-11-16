@@ -48,3 +48,4 @@ import { SiteStateService } from '../../services/site-state';
 export class ToastComponent {
   protected readonly state = inject(SiteStateService);
 }
+

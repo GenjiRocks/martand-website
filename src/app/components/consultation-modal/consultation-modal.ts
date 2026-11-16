@@ -55,3 +55,4 @@ export class ConsultationModalComponent {
     this.consentAccepted = false;
   }
 }
+

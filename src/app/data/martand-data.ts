@@ -626,3 +626,4 @@ export const WHO_WE_ADVISE = [
   { title: 'Government authorities', desc: 'Advisory on statutory policy, infrastructure public-private pacts, and regulatory compliance.' },
   { title: 'Global clients investing in India', desc: 'Foreign corporations, Singapore and US funds, and NRI investors entering the Indian market.' }
 ];
+

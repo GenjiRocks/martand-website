@@ -60,3 +60,4 @@ export class InsightsComponent {
     this.newsletterConsent = false;
   }
 }
+

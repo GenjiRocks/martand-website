@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 /* Design System & Build Notes for Martand Legal Advisors */
 :root {
   --color-navy: #0E1B2E;
@@ -15,7 +17,7 @@
   --color-slate: #535B66;
   --color-slate-navy: #A8B3C4;
 
-  --font-serif: 'Newsreader', Georgia, serif;
+  --font-serif: 'Newsreader', 'Playfair Display', 'Merriweather', 'Georgia', 'Baskerville', serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --radius-sm: 3px;
@@ -169,6 +171,113 @@ h1, h2, h3, h4, h5, h6 {
   .section {
     padding: var(--section-padding-mobile);
   }
+}
+
+/* ========================================================
+   GLOBAL SUBPAGE HERO (Practice Areas, People, About, Insights, Careers, Contact)
+   ======================================================== */
+.page-hero {
+  background-color: var(--color-navy) !important;
+  color: var(--color-white) !important;
+  padding: 64px 0 0 !important;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid var(--color-navy-line);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hero-title {
+  color: var(--color-white) !important;
+  margin-bottom: 20px;
+  font-family: var(--font-serif) !important;
+}
+
+.hero-lead {
+  font-family: var(--font-serif) !important;
+  font-size: 1.25rem !important;
+  line-height: 1.55 !important;
+  color: var(--color-slate-navy) !important;
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.hero-arc-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-arc {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  max-height: 200px;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .hero-arc-wrapper {
+    display: none;
+  }
+}
+
+/* Breadcrumbs on dark hero */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  margin-bottom: 24px;
+}
+
+.crumb-link {
+  color: var(--color-slate-navy) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+.crumb-link:hover {
+  color: var(--color-white) !important;
+}
+
+.crumb-sep {
+  color: var(--color-navy-line) !important;
+}
+
+.crumb-current {
+  color: var(--color-brass) !important;
+}
+
+/* Discipline pills on People hero */
+.disciplines-pills {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 48px;
+}
+
+.disc-pill {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-navy-line);
+  color: var(--color-white) !important;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 500;
 }
 
 /* Buttons */

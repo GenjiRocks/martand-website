@@ -112,3 +112,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
     requestAnimationFrame(update);
   }
 }
+

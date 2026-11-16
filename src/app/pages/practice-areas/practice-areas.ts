@@ -54,3 +54,4 @@ export class PracticeAreasComponent implements OnInit {
     this.state.openConsultation(this.activeArea().name);
   }
 }
+

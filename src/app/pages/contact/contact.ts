@@ -53,3 +53,4 @@ export class ContactComponent {
     this.consentAccepted = false;
   }
 }
+

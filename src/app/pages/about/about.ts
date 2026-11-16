@@ -14,3 +14,4 @@ export class AboutComponent {
   readonly milestones = MILESTONES;
   readonly whoWeAdvise = WHO_WE_ADVISE;
 }
+
