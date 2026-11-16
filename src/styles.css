@@ -638,6 +638,37 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Native Browser View Transitions for Smooth Route Changes */
+::view-transition-old(root) {
+  animation: 0.2s cubic-bezier(0.16, 1, 0.3, 1) both fadeOutView;
+}
+
+::view-transition-new(root) {
+  animation: 0.3s cubic-bezier(0.16, 1, 0.3, 1) both fadeInView;
+}
+
+@keyframes fadeOutView {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fadeInView {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

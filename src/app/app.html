@@ -1,7 +1,14 @@
+<!-- Top Header Navigation Progress Bar -->
+<div class="top-progress-bar" [class.active]="isNavigating()">
+  <div class="top-progress-fill"></div>
+</div>
+
 <app-navbar></app-navbar>
 
 <main class="site-main">
-  <router-outlet></router-outlet>
+  <div class="page-transition-wrapper">
+    <router-outlet></router-outlet>
+  </div>
 </main>
 
 <app-footer></app-footer>
